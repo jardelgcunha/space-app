@@ -24,11 +24,9 @@ const TituloEstilizado = styled.h1`
 
 const Banner = ({ texto, backgroundImage }) => {
     return (
-        <div>
-            <FigureEstilizada $backgroundImage={backgroundImage}>
-                <TituloEstilizado>{texto}</TituloEstilizado>
-            </FigureEstilizada>
-        </div>
+        <FigureEstilizada $backgroundImage={backgroundImage}>
+            <TituloEstilizado>{texto}</TituloEstilizado>
+        </FigureEstilizada>
     );
 };
 
