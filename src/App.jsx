@@ -43,7 +43,17 @@ const App = () => {
     const [fotoSelecionada, setFotoSelecionada] = useState(null);
 
     const aoAlternarFavorito = (foto) => {
-        console.log(foto);
+        setFotosDaGaleria(
+            fotosDaGaleria.map((fotoDaGaleria) => {
+                return {
+                    ...fotoDaGaleria,
+                    favorita:
+                        fotoDaGaleria.id === foto.id
+                            ? !fotoDaGaleria.favorita
+                            : fotoDaGaleria.favorita,
+                };
+            })
+        );
     };
 
     return (
