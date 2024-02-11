@@ -29,10 +29,10 @@ const Galeria = ({ fotos = [], aoFotoSelecionada, aoAlternarFavorito }) => {
                     <ImagensContainer>
                         {fotos.map((foto) => (
                             <Imagem
+                                foto={foto}
+                                key={foto.id}
                                 aoZoomSolicitado={aoFotoSelecionada}
                                 aoAlternarFavorito={aoAlternarFavorito}
-                                key={foto.id}
-                                foto={foto}
                             />
                         ))}
                     </ImagensContainer>
