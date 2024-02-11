@@ -7,7 +7,7 @@ import bannerBackground from './assets/banner.png';
 import Galeria from './componentes/Galeria';
 
 import fotos from './fotos.json';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalZoom from './componentes/ModalZoom';
 
 const FundoGradiente = styled.div`
@@ -40,7 +40,18 @@ const ConteudoGaleria = styled.section`
 
 const App = () => {
     const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos);
+    const [filtro, setFiltro] = useState('');
     const [fotoSelecionada, setFotoSelecionada] = useState(null);
+
+    useEffect(() => {
+        const fotosFiltradas = fotos.filter((foto) => {
+            const filtroPorTitulo =
+                !filtro ||
+                foto.titulo.toLowerCase().includes(filtro.toLowerCase());
+            return filtroPorTitulo;
+        });
+        setFotosDaGaleria(fotosFiltradas);
+    }, [filtro]);
 
     const aoAlternarFavorito = (foto) => {
         if (foto.id === fotoSelecionada?.id) {
@@ -66,7 +77,7 @@ const App = () => {
         <FundoGradiente>
             <EstilosGlobais />
             <AppContainer>
-                <Cabecalho />
+                <Cabecalho setFiltro={setFiltro} />
                 <MainContainer>
                     <BarraLateral />
                     <ConteudoGaleria>
